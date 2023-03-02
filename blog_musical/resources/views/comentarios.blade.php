@@ -18,7 +18,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($comentarios as $comentario)
                         <li class="list-group-item">
-                            <p class="card-text mb-0">{{ $comentario->texto }}</p>
+                            <p class="card-text mb-0">{{ $comentario->nombre }}</p>
 
                             @if ($comentario->estado == 1)
                                 <button class="btn btn-secondary btn-sm" disabled>Activado</button>

@@ -11,15 +11,17 @@
 
     <main class="container mt-5">
         @foreach ($categorias as $categoria)
-                <form action="{{ route('modificar_categoria', $categoria->id) }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre de la categoría:</label>
+            <form action="{{ route('modificar_categoria', $categoria->id) }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    @if ($categoria->id !== 1)
+                    <label for="nombre" class="form-label">Nombre de la categoría:</label>
                         <input type="text" name="nombre" id="nombre" value="{{ $categoria->nombre_categoria }}"
                             class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Actualizar categoría</button>
-                </form>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar categoría</button>
+        @endif
+        </form>
         @endforeach
     </main>
 @endsection

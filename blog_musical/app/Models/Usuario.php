@@ -13,7 +13,7 @@ class Usuario extends Model implements Authenticatable
     protected $table = 'usuarios';
 
     // Indica si el modelo utiliza timestamps
-    public $timestamps = false;
+    public $timestamps = true;
 
     // Atributos que son asignables en masa
     protected $fillable = ['nombre_usuario', 'contrasena'];
