@@ -23,4 +23,9 @@ class Comentario extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function articulo()
+    {
+        return $this->belongsTo(Articulo::class, 'articulos_id');
+    }
 }

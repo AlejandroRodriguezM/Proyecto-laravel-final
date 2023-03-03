@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Models\Articulo;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ComentariosController extends Controller
 {
@@ -55,13 +56,17 @@ class ComentariosController extends Controller
 
     public function show($id)
     {
-        // Aquí iría la lógica para obtener el comentario con el id dado de la base de datos
-        $comentarios = Comentario::where('articulos_id', $id)->get();
-        $articulo = Articulo::find($id);
-        if ($comentarios) {
-            return view('Articulo.ver_articulo', compact('comentarios', 'articulo'));
-        } else {
-            return "No se encontraron comentarios para este artículo.";
+
+        try {
+            $comentarios = Comentario::where('articulos_id', $id)->get();
+            $articulo = Articulo::findOrFail($id);
+            if ($comentarios) {
+                return view('Articulo.ver_articulo', compact('comentarios', 'articulo'));
+            } else {
+                return "No se encontraron comentarios para este artículo.";
+            }
+        } catch (ModelNotFoundException $e) {
+            return view('Comentario.comentario_error', ['id' => $id]);
         }
     }
 

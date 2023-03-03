@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
+    @auth
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endauth
     <div class="container my-5">
         <h1 class="text-center mb-4">Anécdotas de Elvis</h1>
         <div class="row">

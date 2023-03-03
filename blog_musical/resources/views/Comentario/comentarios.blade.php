@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 @section('title', 'Comentarios')
 @section('content')
+    @if (auth()->guest())
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endif
     <header class="py-3">
         <div class="container">
             <h1>Comentarios</h1>
@@ -22,6 +27,7 @@
                                 <h5 class="card-title">Nombre de usuario: {{ $comentario->nombre }}</h5>
                                 <p class="card-text">Comentario: {{ $comentario->comentario }}</p>
                                 <p class="card-text">Fecha de creación: {{ $comentario->created_at->diffForHumans() }}</p>
+                                <p class="card-text">Articulo: {{ $comentario->articulo->titulo }}</p>
                                 <div class="d-flex align-items-center justify-content-between">
                                     @if ($comentario->estado == 1)
                                         <button class="btn btn-secondary btn-sm" disabled>Activado</button>
@@ -31,7 +37,7 @@
                                             <button type="submit" class="btn btn-success btn-sm">Activar</button>
                                         </form>
                                     @endif
-                                    <form action="{{ route('eliminar_comentario', $comentario->id) }}" method="post"
+                                    <form action="{{ route('eliminar_comentario', $comentario->id) }}" method="get"
                                         onsubmit="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -47,6 +53,6 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn-secondary">Volver a entradas</a>
+        <a href="{{ route('home') }}" class="btn btn-secondary">Volver a entradas</a>
     </main>
 @endsection

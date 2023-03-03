@@ -1,6 +1,7 @@
 @extends("layouts.layout")
 @section("title", "Home")
 @section("content")
+
     <!-- Cabecera -->
     <header class="py-3">
         <div class="container">

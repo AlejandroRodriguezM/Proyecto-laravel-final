@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Articulo;
 use App\Models\Categoria;
 use App\Models\Comentario;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class ArticuloController extends Controller
@@ -18,10 +19,13 @@ class ArticuloController extends Controller
 
     public function show($id)
     {
-        // Aquí iría la lógica para obtener el artículo con el id dado
-        $articulo = Articulo::find($id);
-        $comentarios = Comentario::where('articulos_id', $id)->get();
-        return view('Articulo.articulo', compact('articulo','comentarios'));
+        try {
+            $articulo = Articulo::findOrFail($id);
+            $comentarios = Comentario::where('articulos_id', $id)->get();
+            return view('Articulo.articulo', compact('articulo', 'comentarios'));
+        } catch (ModelNotFoundException $e) {
+            return view('Articulo.articulo_error', ['id' => $id]);
+        }
     }
 
     public function show_articulo($id)

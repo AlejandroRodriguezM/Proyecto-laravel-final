@@ -1,7 +1,9 @@
 @extends("layouts.layout")
 @section("title", "Home")
 @section("content")
-
+@if (auth()->guest())
+    <script>window.location = "{{ route('home') }}";</script>
+@endif
 <!-- Cabecera -->
 <header class="py-3">
     <div class="container">

@@ -1,6 +1,9 @@
 @extends("layouts.layout")
 @section("title", "Home")
 @section("content")
+@if (auth()->guest())
+    <script>window.location = "{{ route('home') }}";</script>
+@endif
     <div class="container">
         <h1>Eliminar artículo</h1>
         <p>¿Estás seguro de que quieres eliminar este artículo?</p>

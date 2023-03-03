@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
@@ -60,17 +60,22 @@
 
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <li><a href="{{ route('biografia') }}" class="dropdown-item" class="dropdown-item" >Biografia</a></li>
-                                    <li><a href="{{ route('anecdotas') }}" class="dropdown-item" class="dropdown-item">Anecdotas</a></li>
-                                    <li><a href="{{ route('discografia') }}" class="dropdown-item" class="dropdown-item">Discografia</a></li>
+                                    <li><a href="{{ route('biografia') }}" class="dropdown-item"
+                                            class="dropdown-item">Biografia</a></li>
+                                    <li><a href="{{ route('anecdotas') }}" class="dropdown-item"
+                                            class="dropdown-item">Anecdotas</a></li>
+                                    <li><a href="{{ route('discografia') }}" class="dropdown-item"
+                                            class="dropdown-item">Discografia</a></li>
                                 </ul>
                             </li>
                         @endguest
                     </ul>
                 </div>
-                <form id="buscador" action="{{ route('busqueda') }}" method="get" class="d-flex justify-content-end">
-                    <input class="form-control me-2" name='q' type="search" placeholder="Buscar..." aria-label="Search">
-                    <button class="btn btn-outline-success me-2" type="submit">Buscar</button>
+                <form id="buscador" action="{{ route('busqueda') }}" method="get"
+                    class="d-flex justify-content-end">
+                    <input id="buscar-input" class="form-control me-2" name='q' type="search"
+                        placeholder="Buscar..." aria-label="Search">
+                    <button id="buscar-btn" class="btn btn-outline-success me-2" type="submit">Buscar</button>
                 </form>
 
                 @guest
@@ -118,7 +123,7 @@
         @yield('content')
     </main>
 
-    {{-- <footer style="background-color: #f8f9fa; position: fixed; bottom: 0; width: 100%;">
+    <footer style="background-color: #f8f9fa;">
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -140,8 +145,9 @@
                 </div>
             </div>
         </div>
-    </footer> --}}
-    
+    </footer>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -149,6 +155,13 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <script>
+        document.getElementById('buscador').addEventListener('submit', function(event) {
+            if (document.getElementById('buscar-input').value.trim() === '') {
+                event.preventDefault(); // cancela la solicitud
+            }
+        });
     </script>
 </body>
 

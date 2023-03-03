@@ -3,6 +3,11 @@
 @section('title', 'Modificar categoría')
 
 @section('content')
+    @if (auth()->guest())
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endif
     <header class="py-3">
         <div class="container">
             <h1>Modificar categoría</h1>
@@ -15,7 +20,7 @@
                 @csrf
                 <div class="mb-3">
                     @if ($categoria->id !== 1)
-                    <label for="nombre" class="form-label">Nombre de la categoría:</label>
+                        <label for="nombre" class="form-label">Nombre de la categoría:</label>
                         <input type="text" name="nombre" id="nombre" value="{{ $categoria->nombre_categoria }}"
                             class="form-control" required>
                 </div>

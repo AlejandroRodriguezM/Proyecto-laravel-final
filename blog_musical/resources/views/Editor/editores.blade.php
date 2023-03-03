@@ -46,5 +46,6 @@
                 </table>
             </div>
         </div>
+        <a href="{{ route('home') }}" class="btn btn-secondary">Volver a entradas</a>
     </main>
 @endsection

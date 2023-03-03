@@ -51,8 +51,16 @@
 	text-align: right;
 }
 
+.main-content {
+	min-height: calc(100vh - footer-height);
+}
 
-
+footer {
+	height: footer-height;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
 
 /*--Mediaquery--*/
 @media screen and (max-width: 768px) {

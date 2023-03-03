@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 @section('title', 'Activar Comentario')
 @section('content')
+    @if (auth()->guest())
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endif
     <div class="container my-3">
         <div class="card mb-3">
             <div class="card-body">

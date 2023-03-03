@@ -26,6 +26,7 @@
                         <td scope="col">Título</td>
                         <td scope="col">Categoría</td>
                         <td scope="col">Fecha de creación</td>
+                        <td scope="col">Autor</td>
                         <td scope="col">Acciones</td>
                     </tr>
                 </thead>
@@ -35,7 +36,7 @@
                             <td><a href="{{ route('articulo', $articulo->id) }}">{{ $articulo->titulo }}</a></td>
                             <td>{{ $articulo->categoria->nombre_categoria }}</td>
                             <td>{{ $articulo->created_at->format('d/m/Y') }}</td>
-
+                            <td>{{ $articulo->usuario->nombre_usuario }}</td>
                             <td>
                                 <a href="{{ route('modificar_articulo', $articulo->id) }}" class="btn btn-warning">Modificar</a>
                                 <a href="{{ route('eliminar_articulo', $articulo->id) }}" class="btn btn-danger"

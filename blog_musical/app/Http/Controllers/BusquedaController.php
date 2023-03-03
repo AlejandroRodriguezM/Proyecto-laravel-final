@@ -10,20 +10,21 @@ class BusquedaController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'q' => 'nullable|min:1' // el campo no es requerido, pero si se proporciona, debe tener una longitud mínima de 1
+            'q' => 'nullable|regex:/^[a-zA-Z0-9]+$/|min:1'
+            // El campo no es requerido, pero si se proporciona, debe tener una longitud mínima de 1 y solo permitir letras y números
         ]);
 
-        if ($request->has('q')) { // si el campo está presente y no está vacío
+        if ($request->has('q')) {
             $term = strtolower($request->input('q'));
 
             $resultados = DB::table('articulos')
                 ->whereRaw('LOWER(titulo) LIKE ?', ['%' . $term . '%'])
                 ->orWhereRaw('LOWER(contenido) LIKE ?', ['%' . $term . '%'])
                 ->get();
-        } else {
-            $resultados = collect(); // crear una colección vacía si no se proporciona un término de búsqueda
-        }
 
-        return view('busqueda', compact('resultados'));
+            return view('busqueda', compact('resultados'));
+        } else {
+            return back(); // redirige al usuario a la página anterior
+        }
     }
 }

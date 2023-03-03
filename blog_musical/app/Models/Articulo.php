@@ -30,4 +30,9 @@ class Articulo extends Model
     {
         return $this->hasMany(Comentario::class, 'articulos_id');
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
 }

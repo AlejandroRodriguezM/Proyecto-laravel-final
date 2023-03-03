@@ -1,7 +1,11 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
-
+    @if (auth()->guest())
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endif
     <!-- Cabecera -->
 
     <header class="py-3">
@@ -19,18 +23,20 @@
         <h2 class="mb-4">Categorías</h2>
         <ul class="list-group">
             @foreach ($categorias as $categoria)
-            <li class="list-group-item">
-                <a href="#" class="text-decoration-none">{{ $categoria->nombre_categoria }}</a>
-                @if($categoria->id === 1)
-                <a href="#" class="btn btn-sm btn-primary ms-3" style="cursor: not-allowed;">Modificar</a>
-                <a href="#" class="btn btn-sm btn-danger ms-3" style="cursor: not-allowed;">Eliminar</a>
-                @else
-                <a href="{{ route('modificar_categoria', $categoria->id) }}" class="btn btn-sm btn-primary ms-3">Modificar</a>
-                <a href="{{ route('eliminar_categoria', $categoria->id) }}" class="btn btn-sm btn-danger ms-3" onclick="return confirm('¿Estás seguro de que deseas eliminar este artículo?')">Eliminar</a>
-                @endif
-            </li>
-        @endforeach
-        
+                <li class="list-group-item">
+                    <a href="#" class="text-decoration-none">{{ $categoria->nombre_categoria }}</a>
+                    @if ($categoria->id === 1)
+                        <a href="#" class="btn btn-sm btn-primary ms-3" style="cursor: not-allowed;">Modificar</a>
+                        <a href="#" class="btn btn-sm btn-danger ms-3" style="cursor: not-allowed;">Eliminar</a>
+                    @else
+                        <a href="{{ route('modificar_categoria', $categoria->id) }}"
+                            class="btn btn-sm btn-primary ms-3">Modificar</a>
+                        <a href="{{ route('eliminar_categoria', $categoria->id) }}" class="btn btn-sm btn-danger ms-3"
+                            onclick="return confirm('¿Estás seguro de que deseas eliminar este artículo?')">Eliminar</a>
+                    @endif
+                </li>
+            @endforeach
+
         </ul>
 
         <form action="{{ route('ver_categorias') }}" method="post" class="mt-4">

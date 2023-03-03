@@ -2,6 +2,11 @@
 @extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
+    @auth
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endauth
     <!-- Cabecera -->
     <header class="py-3">
         <div class="container">

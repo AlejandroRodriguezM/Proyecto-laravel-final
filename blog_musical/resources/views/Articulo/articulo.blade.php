@@ -1,6 +1,9 @@
 @extends("layouts.layout")
 @section("title", "Home")
 @section("content")
+@if (auth()->guest())
+    <script>window.location = "{{ route('home') }}";</script>
+@endif
 <div class="container my-3">
     <h1>{{ $articulo->titulo }}</h1>
     <img class="card-img-top" src="{{ asset('images/' . $articulo->imagen) }}" alt="{{ $articulo->titulo }}"

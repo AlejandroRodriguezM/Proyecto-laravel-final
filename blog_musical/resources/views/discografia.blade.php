@@ -1,14 +1,19 @@
 @extends('layouts.layout')
 @section('title', 'Discografia')
 @section('content')
+    @auth
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endauth
     <div class="container my-5">
         <h2>Discografía de Elvis Presley</h2>
 
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
             <div class="col">
                 <div class="card">
-                    <img src="https://vinylroute.com/wp-content/uploads/2021/02/Elvis.jpg"
-                        class="card-img-top" alt="Elvis Presley (1956)">
+                    <img src="https://vinylroute.com/wp-content/uploads/2021/02/Elvis.jpg" class="card-img-top"
+                        alt="Elvis Presley (1956)">
                     <div class="card-body">
                         <h5 class="card-title">Elvis Presley (1956)</h5>
                         <p class="card-text">Álbum debut de Elvis Presley, que incluye canciones como "Blue Suede Shoes" y
@@ -19,8 +24,8 @@
 
             <div class="col">
                 <div class="card">
-                    <img src="https://www.audiokat.com/recursos/albums/004/03834g.jpg"
-                        class="card-img-top" alt="Loving You (1957)">
+                    <img src="https://www.audiokat.com/recursos/albums/004/03834g.jpg" class="card-img-top"
+                        alt="Loving You (1957)">
                     <div class="card-body">
                         <h5 class="card-title">Loving You (1957)</h5>
                         <p class="card-text">Banda sonora de la película del mismo nombre, que incluye canciones como

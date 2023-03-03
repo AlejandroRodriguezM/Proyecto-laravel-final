@@ -1,6 +1,11 @@
 @extends('layouts.layout')
 @section('title', 'Discografia')
 @section('content')
+    @auth
+        <script>
+            window.location = "{{ route('home') }}";
+        </script>
+    @endauth
     <div class="container my-5">
         <div class="row">
             <div class="col-md-6">
@@ -15,8 +20,7 @@
                     lanzó numerosos éxitos y su música sigue siendo popular en la actualidad.</p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('images/elvis3.jpg') }}"
-                    alt="Elvis Presley" class="img-fluid rounded">
+                <img src="{{ asset('images/elvis3.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
             </div>
         </div>
     </div>
@@ -24,8 +28,7 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('images/elvis1.jpg') }}"
-                    alt="Elvis Presley" class="img-fluid rounded">
+                <img src="{{ asset('images/elvis1.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
                 <h3>Elvis y su influencia cultural</h3>
@@ -49,8 +52,7 @@
                     cultura popular continúa hasta el día de hoy.</p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('images/elvis2.jpg') }}"
-                    alt="Elvis Presley" class="img-fluid rounded">
+                <img src="{{ asset('images/elvis2.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
             </div>
         </div>
     </div>
