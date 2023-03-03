@@ -21,6 +21,7 @@
                             <div class="card-body d-grid gap-3">
                                 <h5 class="card-title">Nombre de usuario: {{ $comentario->nombre }}</h5>
                                 <p class="card-text">Comentario: {{ $comentario->comentario }}</p>
+                                <p class="card-text">Fecha de creación: {{ $comentario->created_at->diffForHumans() }}</p>
                                 <div class="d-flex align-items-center justify-content-between">
                                     @if ($comentario->estado == 1)
                                         <button class="btn btn-secondary btn-sm" disabled>Activado</button>
