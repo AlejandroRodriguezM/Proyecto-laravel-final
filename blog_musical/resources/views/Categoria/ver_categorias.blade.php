@@ -33,7 +33,7 @@
         
         </ul>
 
-        <form action="{{ route('categorias') }}" method="post" class="mt-4">
+        <form action="{{ route('ver_categorias') }}" method="post" class="mt-4">
             @csrf
             <div class="mb-3">
                 <label for="category_name" class="form-label">Nombre de la nueva categoría:</label>

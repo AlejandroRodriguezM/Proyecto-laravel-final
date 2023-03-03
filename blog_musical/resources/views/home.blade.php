@@ -6,7 +6,7 @@
         <header class="py-3">
             <div class="container">
                 <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, edita, crea o elimina los artículos publicados</h3>
-                <a href="{{ route('escribir') }}" class="btn btn-outline-primary me-2">Crear artículo</a>
+                <a href="{{ route('escribir_articulo') }}" class="btn btn-outline-primary me-2">Crear artículo</a>
             </div>
         </header>
 
@@ -37,7 +37,7 @@
                             <td>{{ $articulo->created_at->format('d/m/Y') }}</td>
 
                             <td>
-                                <a href="{{ route('modificar', $articulo->id) }}" class="btn btn-warning">Modificar</a>
+                                <a href="{{ route('modificar_articulo', $articulo->id) }}" class="btn btn-warning">Modificar</a>
                                 <a href="{{ route('eliminar_articulo', $articulo->id) }}" class="btn btn-danger"
                                     onclick="return confirm('¿Estás seguro de que deseas eliminar este artículo?')">Eliminar</a>
                             </td>

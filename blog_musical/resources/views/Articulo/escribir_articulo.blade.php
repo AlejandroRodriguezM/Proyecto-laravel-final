@@ -9,7 +9,7 @@
     </div>
 </header>
 <!-- Formulario para escribir artículo -->
-<form class="container my-3" action="{{ route('escribir') }}" method="post" enctype="multipart/form-data">
+<form class="container my-3" action="{{ route('escribir_articulo') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="titulo" class="form-label">Título:</label>

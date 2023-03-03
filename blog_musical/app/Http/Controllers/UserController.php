@@ -17,7 +17,7 @@ class UserController extends Controller
         // Aquí iría la lógica para obtener los comentarios de la base de datos
         $usuarios = Usuario::all();
 
-        return view('editores', compact('usuarios'));
+        return view('Editor.editores', compact('usuarios'));
     }
 
     public function login()

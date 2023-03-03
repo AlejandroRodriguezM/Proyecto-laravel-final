@@ -10,10 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
-    public function index_escribir()
+    public function index_categorias()
     {
         $categorias = Categoria::all();
-
         // Si no existen categorías, crear la categoría "Sin categoría"
         if ($categorias->isEmpty()) {
             $sinCategoria = new Categoria();
@@ -23,9 +22,7 @@ class CategoriaController extends Controller
             // Obtener nuevamente las categorías, incluyendo la nueva categoría creada
             $categorias = Categoria::all();
         }
-    
-        $articulos = Articulo::all();
-        return view('escribir', compact('articulos', 'categorias'));
+        return view('Articulo.escribir_articulo', compact('categorias'));
     }
 
     public function index_comprobar()
@@ -44,13 +41,13 @@ class CategoriaController extends Controller
             DB::statement('ALTER TABLE categorias AUTO_INCREMENT = 1');
         }
 
-        return view('categorias', compact('categorias'));
+        return view('Categoria.ver_categorias', compact('categorias'));
     }
 
     public function index_categoria()
     {
         $categorias = Categoria::all();
-        return view('categorias', compact('categorias'));
+        return view('Categoria.ver_categorias', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -60,14 +57,14 @@ class CategoriaController extends Controller
         $categoria->nombre_categoria = $request->input('nombre');
         $categoria->save();
         session()->flash('success', 'La categoria se ha creado de manera correcta.');
-        return redirect()->route('categorias');
+        return redirect()->route('ver_categorias');
     }
 
     public function edit($id)
     {
         // Aquí iría la lógica para obtener la categoría con el id dado
         $categorias = Categoria::all();
-        return view('modificar_categoria', compact('categorias'));
+        return view('Categoria.modificar_categoria', compact('categorias'));
     }
 
     public function update(Request $request, $id)
@@ -76,7 +73,7 @@ class CategoriaController extends Controller
         $categoria->nombre_categoria = $request->input('nombre');
         $categoria->save();
         session()->flash('success', 'La categoria se ha actualizado de manera correcta.');
-        return redirect()->route('categorias');
+        return redirect()->route('ver_categorias');
     }
 
     public function destroy($id)
@@ -98,6 +95,6 @@ class CategoriaController extends Controller
         $categoria->delete();
         session()->flash('success', 'La categoría se ha eliminado de manera correcta.');
 
-        return redirect()->route('categorias');
+        return redirect()->route('ver_categorias');
     }
 }

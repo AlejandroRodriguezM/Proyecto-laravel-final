@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Articulo;
 use App\Models\Categoria;
+use App\Models\Comentario;
 
 
 class ArticuloController extends Controller
@@ -19,14 +20,15 @@ class ArticuloController extends Controller
     {
         // Aquí iría la lógica para obtener el artículo con el id dado
         $articulo = Articulo::find($id);
-        return view('articulo', compact('articulo'));
+        $comentarios = Comentario::where('articulos_id', $id)->get();
+        return view('Articulo.articulo', compact('articulo','comentarios'));
     }
 
     public function show_articulo($id)
     {
         // Aquí iría la lógica para obtener el artículo con el id dado
         $articulo = Articulo::find($id);
-        return view('ver_articulo', compact('articulo'));
+        return view('Articulo.ver_articulo', compact('articulo'));
     }
 
     public function store(Request $request)
@@ -38,6 +40,19 @@ class ArticuloController extends Controller
         //     'content' => 'required',
         //     'image' => 'image|max:2048'
         // ]);
+
+        $categorias = Categoria::all();
+        // Si no existen categorías, crear la categoría "Sin categoría"
+        if ($categorias->isEmpty()) {
+            $sinCategoria = new Categoria();
+            $sinCategoria->nombre_categoria = 'Sin categoría';
+            $sinCategoria->save();
+
+            // Obtener nuevamente las categorías, incluyendo la nueva categoría creada
+            $categorias = Categoria::all();
+        }
+
+
         // Crear una instancia del modelo Articulo
         $articulo = new Articulo();
         $articulo->titulo = $request->input('titulo');
@@ -66,7 +81,7 @@ class ArticuloController extends Controller
         // Aquí iría la lógica para obtener el artículo con el id dado
         $articulo = Articulo::find($id);
         $categorias = Categoria::all();
-        return view('modificar', compact('articulo', 'categorias'));
+        return view('Articulo.modificar_articulo', compact('articulo', 'categorias'));
     }
 
     public function update(Request $request, $id)

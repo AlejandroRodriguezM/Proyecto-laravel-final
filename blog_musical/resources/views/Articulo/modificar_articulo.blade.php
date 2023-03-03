@@ -9,7 +9,7 @@
     </header>
 
     <!-- Formulario para escribir artículo -->
-    <form class="container my-3" action="{{ route('modificar', $articulo->id) }}" method="post"
+    <form class="container my-3" action="{{ route('modificar_articulo', $articulo->id) }}" method="post"
         enctype="multipart/form-data">
         @csrf
         <div class="mb-3">

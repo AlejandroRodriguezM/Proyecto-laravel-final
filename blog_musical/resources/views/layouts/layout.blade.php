@@ -31,7 +31,7 @@
                                 <a class="nav-link" aria-current="page" href="{{ route('home') }}">Entradas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('escribir') }}">Escribir</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('escribir_articulo') }}">Escribir</a>
                             </li>
 
                             <li class="nav-item">
@@ -44,7 +44,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('categorias') }}">Categorias</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('ver_categorias') }}">Categorias</a>
                             </li>
 
                         @endauth
@@ -59,9 +59,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {{-- <li><a class="dropdown-item" href="{{ route('articulo') }}">Biografia</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('escribir') }}">Anecdotas</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('comentarios') }}">Discografia</a></li> --}}
 
                                     <li><a href="{{ route('biografia') }}" class="dropdown-item" class="dropdown-item" >Biografia</a></li>
                                     <li><a href="{{ route('anecdotas') }}" class="dropdown-item" class="dropdown-item">Anecdotas</a></li>
@@ -121,7 +118,7 @@
         @yield('content')
     </main>
 
-    <footer style="background-color: #f8f9fa; position: fixed; bottom: 0; width: 100%;">
+    {{-- <footer style="background-color: #f8f9fa; position: fixed; bottom: 0; width: 100%;">
         <div class="container">
             <div class="row">
                 <div class="col-6">
@@ -143,7 +140,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
     
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

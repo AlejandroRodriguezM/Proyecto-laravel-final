@@ -10,10 +10,11 @@ class ComentariosController extends Controller
 {
     public function index()
     {
-        // Aquí iría la lógica para obtener los comentarios de la base de datos
         $comentarios = Comentario::all();
-
-        return view('comentarios', compact('comentarios'));
+        if(count($comentarios) < 1) {
+            session()->flash('success', 'No existen comentarios.');
+        }
+        return view('Comentario.comentarios', compact('comentarios'));
     }
 
     public function destroy($id)
@@ -58,7 +59,7 @@ class ComentariosController extends Controller
         $comentarios = Comentario::where('articulos_id', $id)->get();
         $articulo = Articulo::find($id);
         if ($comentarios) {
-            return view('ver_articulo', compact('comentarios', 'articulo'));
+            return view('Articulo.ver_articulo', compact('comentarios', 'articulo'));
         } else {
             return "No se encontraron comentarios para este artículo.";
         }
