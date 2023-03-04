@@ -33,7 +33,7 @@ Route::namespace('Editor')->group(function () {
 
 
 Route::namespace('Articulo')->group(function () {
-    Route::get('/articulo/{id}', [ArticuloController::class, 'show'])->name('articulo');
+    // Route::get('/articulo/{id}', [ArticuloController::class, 'show'])->name('articulo');
     Route::get('/ver_articulo/{id}', [ArticuloController::class, 'show_articulo'])->name('ver_articulo');
     Route::post('/ver_articulo/{id}', [ComentariosController::class, 'store'])->name('ver_articulo');
     Route::get('/ver_articulo/{id}', [ComentariosController::class, 'show'])->name('ver_articulo');
@@ -41,7 +41,8 @@ Route::namespace('Articulo')->group(function () {
     Route::get('/modificar_articulo/{id}', [ArticuloController::class, 'edit'])->name('modificar_articulo');
     Route::post('/modificar_articulo/{id}', [ArticuloController::class, 'update'])->name('modificar_articulo');
     Route::get('/escribir_articulo', [CategoriaController::class, 'index_categorias'])->name('escribir_articulo');
-
+    Route::get('/articulos', [ArticuloController::class, 'index_vista'])->name('articulos');
+    Route::get('/articulos/{id}', [ArticuloController::class, 'activar'])->name('articulos_activar');
 });
 
 

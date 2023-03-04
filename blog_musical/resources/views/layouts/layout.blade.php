@@ -28,14 +28,15 @@
 
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('home') }}">Entradas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('escribir_articulo') }}">Escribir</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('articulos') }}">Articulos</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="{{ route('comentarios') }}">Comentarios</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('escribir_articulo') }}">Escribir un articulo</a>
                             </li>
 
                             <li class="nav-item">

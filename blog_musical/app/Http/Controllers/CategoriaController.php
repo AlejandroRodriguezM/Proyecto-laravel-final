@@ -41,7 +41,9 @@ class CategoriaController extends Controller
         } elseif ($categorias->count() < 2) {
             DB::statement('ALTER TABLE categorias AUTO_INCREMENT = 1');
         }
-
+        if (count($categorias) < 2) {
+            session()->flash('success', 'Solamente existe la categoria predeterminada.');
+        }
         return view('Categoria.ver_categorias', compact('categorias'));
     }
 
@@ -73,7 +75,7 @@ class CategoriaController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
 
         try {
             $categoria = Categoria::findOrFail($id);

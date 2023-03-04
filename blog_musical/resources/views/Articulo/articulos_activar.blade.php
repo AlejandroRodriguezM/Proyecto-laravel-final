@@ -9,12 +9,12 @@
     <div class="container my-3">
         <div class="card mb-3">
             <div class="card-body">
-                <h2 class="card-title">Activar Comentario</h2>
+                <h2 class="card-title">Activar articulo</h2>
                 <p class="card-text">{{ $comentario->texto }}</p>
                 @if ($comentario->activo)
-                    <p class="card-text text-success">El comentario ya está activado</p>
+                    <p class="card-text text-success">El articulo ya está activado</p>
                 @else
-                    <form action="{{ route('comentarios_activar', $comentario->id) }}" method="post" class="d-inline">
+                    <form action="{{ route('articulos_activar', $comentario->id) }}" method="post" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-success btn-sm">Activar</button>
                     </form>

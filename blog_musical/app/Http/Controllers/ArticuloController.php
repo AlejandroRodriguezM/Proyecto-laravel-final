@@ -14,7 +14,17 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = Articulo::all();
+
+        if (count($articulos) < 1) {
+            session()->flash('success', 'No existen articulos.');
+        }
         return view('home', compact('articulos'));
+    }
+
+    public function index_vista()
+    {
+        $articulos = Articulo::all();
+        return view('Articulo.articulos', compact('articulos'));
     }
 
     public function show($id)
@@ -32,7 +42,7 @@ class ArticuloController extends Controller
     {
         // Aquí iría la lógica para obtener el artículo con el id dado
         $articulo = Articulo::find($id);
-        return view('Articulo.ver_articulo', compact('articulo'));
+        return view('Articulo.articulos', compact('articulo'));
     }
 
     public function store(Request $request)
@@ -64,6 +74,7 @@ class ArticuloController extends Controller
         $articulo->contenido = $request->input('contenido');
         $articulo->fecha = now(); // asignar fecha actual
         $articulo->usuario_id = auth()->id(); // Asignar el id del usuario autenticado
+        $articulo->estado = 0;
 
         // Guardar la imagen si se ha subido una
         if ($request->hasFile('image')) {
@@ -115,6 +126,26 @@ class ArticuloController extends Controller
 
         $articulo->delete();
         session()->flash('success', 'Artículo eliminado con éxito');
-        return redirect()->route('home');
+        return redirect()->back();
+    }
+
+    public function estado($id)
+    {
+        $articulo = Articulo::findOrFail($id);
+        if ($articulo->estado == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function activar($id)
+    {
+        // Aquí iría la lógica para activar el comentario con el id dado de la base de datos
+        $articulo = Articulo::find($id);
+        $articulo->estado = 1;
+        $articulo->save();
+        session()->flash('success', 'El comentario se ha activado de manera correcta.');
+        return redirect()->back();
     }
 }

@@ -7,7 +7,7 @@
 <!-- Cabecera -->
 <header class="py-3">
     <div class="container">
-        <h1>Escribir artículo</h1>
+        <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, puedes escribir un articulo</h3>
     </div>
 </header>
 <!-- Formulario para escribir artículo -->

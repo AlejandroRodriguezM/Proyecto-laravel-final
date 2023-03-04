@@ -5,7 +5,7 @@
 @section('content')
     <header class="py-3">
         <div class="container">
-            <h1 class="fw-bold">Lista de Editores</h1>
+            <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b> activa los usuarios como editores</h3>
         </div>
     </header>
 

@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 @section('title', $articulo->titulo)
 @section('content')
-    @auth
+    {{-- @auth
         <script>
             window.location = "{{ route('home') }}";
         </script>
-    @endauth
+    @endauth --}}
     <div class="container my-3">
         <h1>{{ $articulo->titulo }}</h1>
         <img class="card-img-top" src="{{ asset('images/' . $articulo->imagen) }}" alt="{{ $articulo->titulo }}"
@@ -26,25 +26,30 @@
                         <p class="card-text">{{ $comentario->comentario }}</p>
                         <p class="card-text"><small
                                 class="text-muted">{{ $comentario->created_at->diffForHumans() }}</small></p>
+                        @auth
+                            <a href="{{ route('eliminar_comentario', $comentario->id) }}" class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">Eliminar</a>
+                        @endauth
                     </div>
                 </div>
             @endif
         @endforeach
 
-
-        <h3>Agregar comentario</h3>
-        <hr>
-        <form method="POST" action="{{ route('ver_articulo', $articulo->id) }}">
-            @csrf
-            <div class="mb-3">
-                <label for="nombre_usuario" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" required>
-            </div>
-            <div class="mb-3">
-                <label for="contenido" class="form-label">Contenido del comentario</label>
-                <textarea class="form-control" name="comentario" id="comentario" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Agregar comentario</button>
-        </form>
+        @guest
+            <h3>Agregar comentario</h3>
+            <hr>
+            <form method="POST" action="{{ route('ver_articulo', $articulo->id) }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="nombre_usuario" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido del comentario</label>
+                    <textarea class="form-control" name="comentario" id="comentario" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar comentario</button>
+            </form>
+        @endguest
     </div>
 @endsection

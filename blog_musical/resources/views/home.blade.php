@@ -27,16 +27,24 @@
                         <td scope="col">Categoría</td>
                         <td scope="col">Fecha de creación</td>
                         <td scope="col">Autor</td>
+                        <td scope="col">Estado</td>
                         <td scope="col">Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($articulos as $articulo)
+
                         <tr>
-                            <td><a href="{{ route('articulo', $articulo->id) }}">{{ $articulo->titulo }}</a></td>
+                            <td><a href="{{ route('ver_articulo', $articulo->id) }}">{{ $articulo->titulo }}</a></td>
                             <td>{{ $articulo->categoria->nombre_categoria }}</td>
                             <td>{{ $articulo->created_at->format('d/m/Y') }}</td>
                             <td>{{ $articulo->usuario->nombre_usuario }}</td>
+                            <td>
+                                @if ($articulo->estado == 1)
+                                    <span class="badge bg-success">Activado</span>
+                                @else
+                                    <span class="badge bg-danger">Desactivado</span>
+                                @endif
                             <td>
                                 <a href="{{ route('modificar_articulo', $articulo->id) }}" class="btn btn-warning">Modificar</a>
                                 <a href="{{ route('eliminar_articulo', $articulo->id) }}" class="btn btn-danger"
@@ -62,6 +70,7 @@
             <h2>Listado de artículos</h2>
             <div class="row">
                 @foreach ($articulos as $articulo)
+                @if ($articulo->estado == 1)
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
                             <img class="card-img-top" src="{{ asset('images/' . $articulo->imagen) }}"
@@ -77,6 +86,7 @@
                             </div>
                         </div>
                     </div>
+                @endif
                 @endforeach
             </div>
         </main>

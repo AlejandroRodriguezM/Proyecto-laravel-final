@@ -8,7 +8,7 @@
     @endif
     <header class="py-3">
         <div class="container">
-            <h1>Comentarios</h1>
+            <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, activa o elimina los comentarios publicados</h3>
         </div>
     </header>
 
