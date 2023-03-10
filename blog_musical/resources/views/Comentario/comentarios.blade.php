@@ -37,14 +37,18 @@
                                             @if(auth()->user()->esEditor(auth()->user()->id))
                                             <button type="submit" class="btn btn-success btn-sm">Activar</button>
                                             @else
-                                            <button type="submit" class="btn btn-success btn-sm" style="cursor: not-allowed;">Activar</button>
+                                            <button type="button" class="btn btn-success btn-sm" style="cursor: not-allowed;">Activar</button>
                                             @endif
                                         </form>
                                     @endif
                                     <form action="{{ route('eliminar_comentario', $comentario->id) }}" method="get"
                                         onsubmit="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
                                         @csrf
+                                        @if(auth()->user()->esEditor(auth()->user()->id))
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger btn-sm" style="cursor: not-allowed;">Eliminar</button>
+                                        @endif
                                     </form>
                                 </div>
                             </div>

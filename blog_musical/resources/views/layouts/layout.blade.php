@@ -14,7 +14,7 @@
 
 </head>
 
-<body style='background-color: #6583a1;'>
+<body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -97,8 +97,8 @@
         @auth
             <section class="jumbotron administracion">
                 <div class="container">
-                    <h1>ADMINISTRACIÓN</h1>
-                    <p>
+                    <h1 style="color:blue">ADMINISTRACIÓN</h1>
+                    <p style="color:blue">
                         Página de Administración.
                     </p>
 

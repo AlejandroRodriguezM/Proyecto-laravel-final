@@ -46,9 +46,16 @@
                                     <span class="badge bg-danger">Desactivado</span>
                                 @endif
                             <td>
+                                <a href="{{ route('ver_articulo', $articulo->id) }}" class="btn btn-primary">Ver</a>
+                                @if(auth()->user()->esEditor(auth()->user()->id))
                                 <a href="{{ route('modificar_articulo', $articulo->id) }}" class="btn btn-warning">Modificar</a>
                                 <a href="{{ route('eliminar_articulo', $articulo->id) }}" class="btn btn-danger"
                                     onclick="return confirm('¿Estás seguro de que deseas eliminar este artículo?')">Eliminar</a>
+                                @else
+                                <a href="#" class="btn btn-warning" style="cursor: not-allowed;">Modificar</a>
+                                <a href="#" class="btn btn-danger" style="cursor: not-allowed;">Eliminar</a>
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach
