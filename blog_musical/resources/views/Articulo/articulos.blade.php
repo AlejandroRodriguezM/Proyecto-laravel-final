@@ -44,7 +44,12 @@
                                                 <form action="{{ route('articulos_activar', $articulo->id) }}"
                                                     method="get">
                                                     @csrf
+                                                    @if(auth()->user()->esEditor(auth()->user()->id))
                                                     <button type="submit" class="btn btn-success btn-sm">Activar</button>
+                                                    @else
+                                                    <button type="button" class="btn btn-success btn-sm" style="cursor: not-allowed;">Activar</button>
+                                                    @endif
+
                                                 </form>
                                             @endif
                                             <form action="{{ route('eliminar_articulo', $articulo->id) }}" method="get"

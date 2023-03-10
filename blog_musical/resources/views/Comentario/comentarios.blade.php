@@ -34,7 +34,11 @@
                                     @else
                                         <form action="{{ route('comentarios_activar', $comentario->id) }}" method="post">
                                             @csrf
+                                            @if(auth()->user()->esEditor(auth()->user()->id))
                                             <button type="submit" class="btn btn-success btn-sm">Activar</button>
+                                            @else
+                                            <button type="submit" class="btn btn-success btn-sm" style="cursor: not-allowed;">Activar</button>
+                                            @endif
                                         </form>
                                     @endif
                                     <form action="{{ route('eliminar_comentario', $comentario->id) }}" method="get"

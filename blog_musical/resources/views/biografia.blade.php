@@ -9,41 +9,55 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-6">
-                <h2>Biografía de Elvis Presley</h2>
-                <p class="lead">Elvis Aaron Presley (Tupelo, Misisipi, Estados Unidos; 8 de enero de 1935 - Memphis,
-                    Tennessee, Estados Unidos; 16 de agosto de 1977) fue uno de los cantantes estadounidenses más populares
-                    del siglo XX y está considerado como un ícono cultural y una leyenda de la música. Fue apodado como "El
-                    Rey del Rock and Roll" y su influencia en la música y la cultura popular es incuestionable.</p>
-                <p>Comenzó su carrera musical en 1954 en Sun Records en Memphis. Su estilo musical era una mezcla de blues,
-                    gospel y country. En poco tiempo, se convirtió en una sensación musical en todo el país y rápidamente se
-                    convirtió en un icono cultural y una figura influyente en la música popular. A lo largo de su carrera,
-                    lanzó numerosos éxitos y su música sigue siendo popular en la actualidad.</p>
+                <h2>Quienes son sound shine</h2>
+                <p class="lead">
+                    Soundshine es una banda de rock de covers relativamente nueva que se formó en 2021 en Málaga, España. A
+                    pesar de ser una banda joven, los miembros de Soundshine tienen experiencia previa en otras bandas y
+                    proyectos musicales.
+                </p>
+
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('images/elvis3.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
+                <div class="embed-responsive embed-responsive-16by9 rounded"></div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/TP6r7sZV8Bg"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen class="embed-responsive-item"></iframe>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="container my-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('images/elvis1.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6HZikWg49bc"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
             </div>
             <div class="col-md-6">
-                <h3>Elvis y su influencia cultural</h3>
-                <p>Además de su éxito musical, Elvis también tuvo un gran impacto en la cultura popular de su época. Su
-                    estilo de actuación en el escenario y su carisma personal le ganaron el apodo de "El Rey del Rock and
-                    Roll". Su imagen y estilo influyeron en la moda de la época y se convirtió en un modelo a seguir para
-                    muchos jóvenes de su tiempo.</p>
-                <p>Además de su carrera musical, Elvis también actuó en numerosas películas y programas de televisión. Su
-                    imagen y su música se convirtieron en un fenómeno cultural en todo el mundo y sigue siendo un ícono
-                    cultural hasta el día de hoy.</p>
+                <h3>Informacion sobre la banda</h3>
+                <p>La banda se especializa en tocar versiones de algunas de las mejores canciones de rock de todos los
+                    tiempos, desde clásicos del rock hasta canciones más modernas y populares. Su objetivo es ofrecer una
+                    experiencia musical emocionante y auténtica que haga que los oyentes se sientan transportados a través
+                    del tiempo y el espacio.
+
+                    Los miembros de Soundshine son talentosos músicos que se esfuerzan por crear un sonido auténtico y fiel
+                    a las canciones originales. La banda está compuesta por un cantante con una voz potente y expresiva, un
+                    guitarrista con habilidades impresionantes, un bajista con un gran sentido del ritmo y un baterista
+                    apasionado que impulsa el sonido de la banda.
+
+                    En resumen, Soundshine es una banda de rock de covers relativamente nueva que se formó en 2021 en
+                    Málaga, España. Su enfoque es ofrecer una experiencia musical emocionante y auténtica a través de la
+                    interpretación de algunas de las mejores canciones de rock de todos los tiempos. Con su talento y pasión
+                    por la música, Soundshine es una banda que promete ofrecer un espectáculo impresionante para cualquier
+                    amante del rock.</p>
             </div>
         </div>
     </div>
 
-    <div class="container my-5">
+    {{-- <div class="container my-5">
         <div class="row">
             <div class="col-md-6">
                 <h3>La muerte de Elvis</h3>
@@ -55,6 +69,6 @@
                 <img src="{{ asset('images/elvis2.jpg') }}" alt="Elvis Presley" class="img-fluid rounded">
             </div>
         </div>
-    </div>
+    </div> --}}
 
 @endsection

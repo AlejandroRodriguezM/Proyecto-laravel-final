@@ -70,6 +70,6 @@ Route::get('/biografia', function () {
     return view('biografia');
 })->name('biografia');
 
-Route::get('/discografia', function () {
-    return view('discografia');
-})->name('discografia');
+Route::get('/integrantes', function () {
+    return view('integrantes');
+})->name('integrantes');

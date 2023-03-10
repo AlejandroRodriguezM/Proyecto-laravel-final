@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comentario;
 use App\Models\Articulo;
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ComentariosController extends Controller
@@ -12,10 +13,11 @@ class ComentariosController extends Controller
     public function index()
     {
         $comentarios = Comentario::all();
+        $usuarios = Usuario::all();
         if(count($comentarios) < 1) {
             session()->flash('success', 'No existen comentarios.');
         }
-        return view('Comentario.comentarios', compact('comentarios'));
+        return view('Comentario.comentarios', compact('comentarios','usuarios'));
     }
 
     public function destroy($id)

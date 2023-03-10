@@ -14,11 +14,11 @@
 
 </head>
 
-<body>
+<body style='background-color: #6583a1;'>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('home') }}">Elvis Presley</a>
+                <a class="navbar-brand" href="{{ route('home') }}">Sound Shine</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -65,8 +65,8 @@
                                             class="dropdown-item">Biografia</a></li>
                                     <li><a href="{{ route('anecdotas') }}" class="dropdown-item"
                                             class="dropdown-item">Anecdotas</a></li>
-                                    <li><a href="{{ route('discografia') }}" class="dropdown-item"
-                                            class="dropdown-item">Discografia</a></li>
+                                    <li><a href="{{ route('integrantes') }}" class="dropdown-item"
+                                            class="dropdown-item">Integrantes</a></li>
                                 </ul>
                             </li>
                         @endguest
@@ -110,12 +110,6 @@
         @guest
             <section class="jumbotron">
                 <div class="container">
-                    <h1>Todo sobre Elvis Presley</h1>
-                    <p>
-                        La página con toda la información sobre el Rey del Rock & Roll.
-                    </p>
-
-                    <br>
                 </div>
             </section>
         @endguest
