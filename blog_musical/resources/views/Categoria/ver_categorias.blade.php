@@ -20,6 +20,15 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h2 class="mb-4">Categorías</h2>
         <ul class="list-group">
             @foreach ($categorias as $categoria)
@@ -42,8 +51,8 @@
         <form action="{{ route('ver_categorias') }}" method="post" class="mt-4">
             @csrf
             <div class="mb-3">
-                <label for="category_name" class="form-label">Nombre de la nueva categoría:</label>
-                <input type="text" name="nombre" id="category_name" required class="form-control">
+                <label for="nombre_categoria" class="form-label">Nombre de la nueva categoría:</label>
+                <input type="text" name="nombre_categoria" id="nombre_categoria" required class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Crear categoría</button>
         </form>

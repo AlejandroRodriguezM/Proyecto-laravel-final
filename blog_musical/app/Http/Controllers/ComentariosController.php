@@ -7,7 +7,7 @@ use App\Models\Comentario;
 use App\Models\Articulo;
 use App\Models\Usuario;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\Validator;
 class ComentariosController extends Controller
 {
     public function index()
@@ -43,9 +43,20 @@ class ComentariosController extends Controller
 
     public function store(Request $request)
     {
-        // Aquí iría la lógica para guardar el comentario en la base de datos
+        $validator = Validator::make($request->all(), [
+            'nombre_usuario' => 'required|max:255',
+            'comentario' => 'required',
+        ], [
+            'nombre_usuario.required' => 'El nombre es obligatorio.',
+            'nombre_usuario.max' => 'El nombre no puede tener más de :max caracteres.',
+            'comentario.required' => 'El comentario es obligatorio.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
         $comentario = new Comentario();
-        $articulo = Articulo::find($request->input('articulo_id'));
+        // $articulo = Articulo::find($request->input('articulo_id'));
         $comentario->nombre = $request->input('nombre_usuario');
         $comentario->comentario = $request->input('comentario');
         $comentario->estado = 0;

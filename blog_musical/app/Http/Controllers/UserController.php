@@ -32,14 +32,26 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'nombre_usuario' => 'required',
-        //     'nick' => 'required',
-        //     'email' => 'required|email|unique:usuarios',
-        //     'contrasena' => 'required|min:8',
-        //     'contrasena_confirmation' => 'required|same:password'
-        // ]);
-
+        $request->validate([
+            'nombre_usuario' => 'required',
+            'nick' => 'required',
+            'email' => 'required|email|unique:usuarios',
+            'contrasena' => 'required|min:8',
+            'contrasena_confirmation' => 'required|same:password'
+        ], [
+            'nombre_usuario.required' => 'El nombre de usuario es obligatorio.',
+            'nick.required' => 'El nick es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección de correo válida.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'contrasena.required' => 'La contraseña es obligatoria.',
+            'contrasena.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'contrasena_confirmation.required' => 'La confirmación de la contraseña es obligatoria.',
+            'contrasena_confirmation.same' => 'La contraseña y su confirmación deben coincidir.'
+        ]);
+        if($request->fails()) {
+            return redirect('/register')->withErrors($request);
+        }
         $usuario = new Usuario();
         $usuario->nombre_usuario = $request->nombre_usuario;
         $usuario->nick = $request->nick;
@@ -56,7 +68,6 @@ class UserController extends Controller
 
         return redirect('/login')->with('success', 'El usuario ha sido creado exitosamente.');
     }
-
 
     public function agregarEditor($id)
     {

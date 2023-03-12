@@ -7,7 +7,7 @@ use App\Models\Categoria;
 use App\Models\Articulo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\Validator;
 
 class CategoriaController extends Controller
 {
@@ -55,9 +55,20 @@ class CategoriaController extends Controller
 
     public function store(Request $request)
     {
-        // Aquí iría la lógica para guardar la categoría en la base de datos
+        // Validar los datos del formulario
+        $validator = Validator::make($request->all(), [
+            'nombre_categoria' => 'required|unique:categorias|max:255'
+        ], [
+            'nombre_categoria.required' => 'El nombre de la categoría es obligatorio.',
+            'nombre_categoria.unique' => 'El nombre de la categoría ya está en uso.',
+            'nombre_categoria.max' => 'El nombre de la categoría no puede tener más de :max caracteres.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/ver_categorias')->withErrors($validator);
+        }
         $categoria = new Categoria();
-        $categoria->nombre_categoria = $request->input('nombre');
+        $categoria->nombre_categoria = $request->input('nombre_categoria');
         $categoria->save();
         session()->flash('success', 'La categoria se ha creado de manera correcta.');
         return redirect()->route('ver_categorias');

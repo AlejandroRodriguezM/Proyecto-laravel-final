@@ -7,6 +7,7 @@ use App\Models\Articulo;
 use App\Models\Categoria;
 use App\Models\Comentario;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
 
 
 class ArticuloController extends Controller
@@ -48,12 +49,23 @@ class ArticuloController extends Controller
     public function store(Request $request)
     {
         // Validar los datos del formulario
-        // $request->validate([
-        //     'title' => 'required|max:255',
-        //     'category' => 'required',
-        //     'content' => 'required',
-        //     'image' => 'image|max:2048'
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|max:255',
+            'categoria' => 'required',
+            'contenido' => 'required',
+            'image' => 'image|max:2048'
+        ], [
+            'titulo.required' => 'El título es obligatorio.',
+            'titulo.max' => 'El título no puede tener más de :max caracteres.',
+            'categoria.required' => 'La categoría es obligatoria.',
+            'contenido.required' => 'El contenido es obligatorio.',
+            'image.image' => 'El archivo subido no es una imagen.',
+            'image.max' => 'La imagen no puede tener más de :max kilobytes.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/escribir_articulo')->withErrors($validator);
+        }
 
         $categorias = Categoria::all();
         // Si no existen categorías, crear la categoría "Sin categoría"
@@ -141,11 +153,11 @@ class ArticuloController extends Controller
 
     public function activar($id)
     {
-        // Aquí iría la lógica para activar el comentario con el id dado de la base de datos
+        // Aquí iría la lógica para activar el articulo con el id dado de la base de datos
         $articulo = Articulo::find($id);
         $articulo->estado = 1;
         $articulo->save();
-        session()->flash('success', 'El comentario se ha activado de manera correcta.');
+        session()->flash('success', 'El articulo se ha activado de manera correcta.');
         return redirect()->back();
     }
 }

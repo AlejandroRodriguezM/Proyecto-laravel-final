@@ -7,6 +7,8 @@
             window.location = "{{ route('home') }}";
         </script>
     @endauth
+
+
     <!-- Cabecera -->
     <header class="py-3">
         <div class="container">
@@ -21,6 +23,15 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Formulario de registro -->
         <form action="{{ route('register') }}" method="post">
             @csrf
@@ -28,33 +39,21 @@
                 <label for="nombre_usuario" class="form-label">Nombre:</label>
                 <input type="text" name="nombre_usuario" id="nombre_usuario" value="{{ old('nombre_usuario') }}"
                     class="form-control">
-                @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="nick" class="form-label">Nick:</label>
                 <input type="text" name="nick" id="nick" value="{{ old('nick') }}" class="form-control">
-                @error('username')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electrónico:</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
-                @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="contrasena" class="form-label">Contraseña:</label>
                 <input type="password" name="contrasena" id="contrasena" class="form-control">
-                @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="mb-3">

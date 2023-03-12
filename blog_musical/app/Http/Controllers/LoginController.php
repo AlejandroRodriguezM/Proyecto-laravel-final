@@ -6,15 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
 
     public function login(Request $request)
     {
-        // $request->validate([
-        //     'nombre_usuario' => 'required|nombre_usuario',
-        //     'contrasena' => 'required|min:8'
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'nombre_usuario' => 'required|nombre_usuario',
+            'contrasena' => 'required|min:8'
+        ], [
+            'nombre_usuario.required' => 'El nombre de usuario es obligatorio.',
+            'nombre_usuario.nombre_usuario' => 'El nombre de usuario no es válido.',
+            'contrasena.required' => 'La contraseña es obligatoria.',
+            'contrasena.min' => 'La contraseña debe tener al menos 8 caracteres.'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/login')->withErrors($validator);
+        }
 
         $usuario = Usuario::where('nombre_usuario', $request->nombre_usuario)->first();
 

@@ -1,11 +1,7 @@
 @extends('layouts.layout')
 @section('title', $articulo->titulo)
 @section('content')
-    {{-- @auth
-        <script>
-            window.location = "{{ route('home') }}";
-        </script>
-    @endauth --}}
+
     <div class="container my-3">
         <h1>{{ $articulo->titulo }}</h1>
         <img class="card-img-top" src="{{ asset('images/' . $articulo->imagen) }}" alt="{{ $articulo->titulo }}"
@@ -16,6 +12,15 @@
     </div>
 
     <div class="container my-3">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h2>Comentarios</h2>
         <hr>
         @foreach ($comentarios as $comentario)
