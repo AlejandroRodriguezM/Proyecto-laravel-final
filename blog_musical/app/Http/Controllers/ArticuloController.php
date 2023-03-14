@@ -15,16 +15,19 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = Articulo::all();
-
         if (count($articulos) < 1) {
-            session()->flash('success', 'No existen articulos.');
+            session()->flash('error', 'No existen articulos.');
         }
         return view('home', compact('articulos'));
     }
 
     public function index_vista()
     {
+
         $articulos = Articulo::all();
+        if (count($articulos) < 1) {
+            session()->flash('error', 'No existen articulos.');
+        }
         return view('Articulo.articulos', compact('articulos'));
     }
 

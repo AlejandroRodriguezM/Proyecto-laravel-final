@@ -28,30 +28,53 @@
 
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('articulos') }}">Articulos</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('articulos') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Articulos</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('comentarios') }}">Comentarios</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('comentarios') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Comentarios</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('escribir_articulo') }}">Escribir un articulo</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('escribir_articulo') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Escribir un articulo</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page"
-                                    href="{{ route('editores') }}">Desbloquear(Editores)</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('editores') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Desbloquear(Editores)</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('ver_categorias') }}">Categorias</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('ver_categorias') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Categorias</a>
                             </li>
 
                         @endauth
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('home') }}">Inicio</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('home') }}">
+                                    @php
+                                        session()->forget(['success', 'error']);
+                                    @endphp
+                                    Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -126,14 +149,17 @@
                 </div>
                 <div class="col-6">
                     <ul class="list-inline text-end">
-                        <li><a href="{{ route('home') }}" style="text-decoration: none; color: #212529;">Inicio</a></li>
+                        <li><a href="{{ route('home') }}" style="text-decoration: none; color: #212529;">Inicio</a>
+                        </li>
                         @guest
-                            <li><a href="{{ route('login') }}" style="text-decoration: none; color: #212529;">Accede</a></li>
+                            <li><a href="{{ route('login') }}" style="text-decoration: none; color: #212529;">Accede</a>
+                            </li>
                         @endguest
                         @auth
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <li><a href="{{ route('logout') }}" style="text-decoration: none; color: #212529;">Cerrar sesión</a></li>
+                                <li><a href="{{ route('logout') }}" style="text-decoration: none; color: #212529;">Cerrar
+                                        sesión</a></li>
                             </form>
                         @endauth
                     </ul>

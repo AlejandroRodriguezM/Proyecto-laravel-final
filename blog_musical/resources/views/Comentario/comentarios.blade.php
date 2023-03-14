@@ -6,16 +6,22 @@
             window.location = "{{ route('home') }}";
         </script>
     @endif
-    <header class="py-3">
-        <div class="container">
-            <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, activa o elimina los comentarios publicados</h3>
-        </div>
-    </header>
-
+    @auth
+        <header class="py-3">
+            <div class="container">
+                <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, activa o elimina los comentarios publicados</h3>
+            </div>
+        </header>
+    @endauth
     <main class="container my-3">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         @endif
         <div class="card mb-3">
@@ -34,20 +40,22 @@
                                     @else
                                         <form action="{{ route('comentarios_activar', $comentario->id) }}" method="post">
                                             @csrf
-                                            @if(auth()->user()->esEditor(auth()->user()->id))
-                                            <button type="submit" class="btn btn-success btn-sm">Activar</button>
+                                            @if (auth()->user()->esEditor(auth()->user()->id))
+                                                <button type="submit" class="btn btn-success btn-sm">Activar</button>
                                             @else
-                                            <button type="button" class="btn btn-success btn-sm" style="cursor: not-allowed;">Activar</button>
+                                                <button type="button" class="btn btn-success btn-sm"
+                                                    style="cursor: not-allowed;">Activar</button>
                                             @endif
                                         </form>
                                     @endif
                                     <form action="{{ route('eliminar_comentario', $comentario->id) }}" method="get"
                                         onsubmit="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
                                         @csrf
-                                        @if(auth()->user()->esEditor(auth()->user()->id))
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        @if (auth()->user()->esEditor(auth()->user()->id))
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                         @else
-                                        <button type="button" class="btn btn-danger btn-sm" style="cursor: not-allowed;">Eliminar</button>
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                style="cursor: not-allowed;">Eliminar</button>
                                         @endif
                                     </form>
                                 </div>

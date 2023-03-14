@@ -6,12 +6,15 @@
             window.location = "{{ route('home') }}";
         </script>
     @endguest
+
+    @auth
     <!-- Cabecera -->
     <header class="py-3">
         <div class="container">
             <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, puedes escribir un articulo</h3>
         </div>
     </header>
+    @endauth
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

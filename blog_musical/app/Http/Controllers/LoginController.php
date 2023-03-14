@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Validator;
+
 class LoginController extends Controller
 {
 
@@ -23,9 +24,12 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            
+
             return redirect('/login')->withErrors($validator);
         }
+
+        // Check if there is a session message and delete it
+
 
         $usuario = Usuario::where('nombre_usuario', $request->nombre_usuario)->first();
 
@@ -46,8 +50,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
-
-
 }

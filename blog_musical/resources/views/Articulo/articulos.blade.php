@@ -6,18 +6,25 @@
             window.location = "{{ route('home') }}";
         </script>
     @endif
+    @auth
     <header class="py-3">
         <div class="container">
             <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, activa o elimina los artículos publicados</h3>
         </div>
     </header>
-
+    @endauth
     <main class="container my-3">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
+
+        @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <div class="card mb-3">
             <div class="card-body">
                 <ul class="list-group list-group-flush">

@@ -15,7 +15,7 @@ class ComentariosController extends Controller
         $comentarios = Comentario::all();
         $usuarios = Usuario::all();
         if(count($comentarios) < 1) {
-            session()->flash('success', 'No existen comentarios.');
+            session()->flash('error', 'No existen comentarios.');
         }
         return view('Comentario.comentarios', compact('comentarios','usuarios'));
     }

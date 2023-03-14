@@ -3,12 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
-    <header class="py-3">
-        <div class="container">
-            <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b> activa los usuarios como editores</h3>
-        </div>
-    </header>
-
+    @auth
+        <header class="py-3">
+            <div class="container">
+                <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b> activa los usuarios como editores</h3>
+            </div>
+        </header>
+    @endauth
     <main class="container my-3">
         <div class="card mb-3">
             <div class="card-body">
@@ -36,7 +37,8 @@
                                                 <button type="submit" class="btn btn-primary">Hacer Editor</button>
                                             </form>
                                         @else
-                                            <button type="button" class="btn btn-primary" style="cursor: not-allowed;">Hacer Editor</button>
+                                            <button type="button" class="btn btn-primary"
+                                                style="cursor: not-allowed;">Hacer Editor</button>
                                         @endif
                                     @endif
                                 </td>

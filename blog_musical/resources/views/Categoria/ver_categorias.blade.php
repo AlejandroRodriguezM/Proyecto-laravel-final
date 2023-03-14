@@ -7,17 +7,22 @@
         </script>
     @endif
     <!-- Cabecera -->
-
-    <header class="py-3">
-        <div class="container">
-            <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, edita, crea o elimina diferentes categorias</h3>
-        </div>
-    </header>
-
+    @auth
+        <header class="py-3">
+            <div class="container">
+                <h3> Hola <b>{{ auth()->user()->nombre_usuario }}</b>, edita, crea o elimina diferentes categorias</h3>
+            </div>
+        </header>
+    @endauth
     <main class="container mt-5">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
         @endif
         @if ($errors->any())
