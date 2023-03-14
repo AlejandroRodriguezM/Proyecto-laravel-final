@@ -69,7 +69,6 @@ class ComentariosController extends Controller
 
     public function show($id)
     {
-
         try {
             $comentarios = Comentario::where('articulos_id', $id)->get();
             $articulo = Articulo::findOrFail($id);
