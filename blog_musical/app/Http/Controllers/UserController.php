@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Usuario;
 use App\Models\Editor;
@@ -32,12 +34,12 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre_usuario' => 'required',
             'nick' => 'required',
             'email' => 'required|email|unique:usuarios',
             'contrasena' => 'required|min:8',
-            'contrasena_confirmation' => 'required|same:password'
+            'contrasena_confirmation' => 'required|same:contrasena'
         ], [
             'nombre_usuario.required' => 'El nombre de usuario es obligatorio.',
             'nick.required' => 'El nick es obligatorio.',
@@ -49,8 +51,8 @@ class UserController extends Controller
             'contrasena_confirmation.required' => 'La confirmación de la contraseña es obligatoria.',
             'contrasena_confirmation.same' => 'La contraseña y su confirmación deben coincidir.'
         ]);
-        if($request->fails()) {
-            return redirect('/register')->withErrors($request);
+        if ($validator->fails()) {
+            return redirect('/register')->withErrors($validator);
         }
         $usuario = new Usuario();
         $usuario->nombre_usuario = $request->nombre_usuario;
